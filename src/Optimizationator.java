@@ -1,6 +1,7 @@
 import java.util.ArrayList;
+import java.util.List;
 
-public class Optimizationator {
+public class Optimizationator<T> {
     // totalVP we want to get to
     // If we go over the total, we want to keep into the account of total points we went over buy and add that
     // To the cost times some factor.
@@ -15,6 +16,16 @@ public class Optimizationator {
     }
 
 
+    public List<OptNode<T>> createSearchSpace(int n) {
+        // This should generate an n-ary tree of all possible combinations to get to the required VP amount.
+        // It will return the data structure.
+
+
+
+
+
+
+    }
 
 
 

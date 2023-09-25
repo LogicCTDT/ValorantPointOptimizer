@@ -44,7 +44,7 @@ public class Main {
     private static List<Integer> computeBest(int n) {
         // Always pick from the larger VP category, basically do the highest ammount, then if that doesn't work, do the
         // second highest,etc
-        // TODO: FIX THIS SHIT, IT LITERALLY DOESN"T WORK, FIGURE OUT W HY YOU SUCK AT PROGRAMMING ADWAOKDAOSK
+        // TODO: FIX THIS CODE
 
 
         // Okay, so we will be using the Breach an d Bound Algorithm, using the Greedy Heuristic to bind the upper bound
@@ -62,6 +62,8 @@ public class Main {
 
 
     }
+
+
 
 
     private static void print(List<Integer> numlist) {
