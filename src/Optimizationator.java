@@ -20,6 +20,10 @@ public class Optimizationator<T> {
         // This should generate an n-ary tree of all possible combinations to get to the required VP amount.
         // It will return the data structure.
 
+        // n gives us our total amount of VP.
+
+        // Let's generate a starter node, this one has 0 Vp and costs 0, just serves to connect the hole tree
+        OptNode head = new OptNode();
 
 
 
