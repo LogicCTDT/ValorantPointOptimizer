@@ -23,4 +23,39 @@ class OptNode<T> {
     public double getCost() {
         return cost;
     }
+
+
+    //Let's make 6 methods for our static classes
+
+    public OptNode<T> OptNode475() {
+        OptNode<T> res = new OptNode(475, 6.99);
+        return res;
+    }
+
+    public OptNode<T> OptNode1000() {
+        OptNode<T> res = new OptNode(1000, 13.99);
+        return res;
+    }
+
+    public OptNode<T> OptNode2050() {
+        OptNode<T> res = new OptNode(2050, 27.99);
+        return res;
+    }
+
+    public OptNode<T> OptNode3650() {
+        OptNode<T> res = new OptNode(3650, 47.99);
+        return res;
+    }
+    public OptNode<T> OptNode5350() {
+        OptNode<T> res = new OptNode(5350, 69.99);
+        return res;
+    }
+    public OptNode<T> OptNode11000() {
+        OptNode<T> res = new OptNode(11000, 139.99);
+        return res;
+    }
+
+    public static void main(String[] args) {
+    }
 }
+
