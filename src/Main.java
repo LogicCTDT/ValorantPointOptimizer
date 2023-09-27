@@ -16,11 +16,10 @@ public class Main {
 
         int needVP = Integer.parseInt(totalVP) -Integer.parseInt(currVP);
 
-        List<Integer> ans = computeBest(needVP);
-        double money = computeBestmoney(needVP);
-        System.out.println(ans);
-        print(ans);
-        System.out.println(money);
+
+
+
+
     }
 
 
@@ -41,7 +40,7 @@ public class Main {
         amount.add(5350);
         amount.add(11000);
     }
-    private static List<Integer> computeBest(int n) {
+    private static void computeBest(int n) {
         // Always pick from the larger VP category, basically do the highest ammount, then if that doesn't work, do the
         // second highest,etc
         // TODO: FIX THIS CODE
@@ -53,7 +52,6 @@ public class Main {
 
         // This function will be the dfs elements. The idea is visit nodes in bfs style.
 
-        best_value = 0;
 
 
 
