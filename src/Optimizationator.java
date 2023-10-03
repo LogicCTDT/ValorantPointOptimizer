@@ -59,40 +59,55 @@ public class Optimizationator<T> {
 
 
     //}
+    /*
+    This function should return a List of all possible combinations of amounts that can make totalCost from the amounts
+    given in amountList
+     */
 
-    public List<Integer> addItem(List<Integer> resList, int n) {
+    public List<List<Integer>> allCombinations() {
+        // The indea behind all combinations is to create a bunch of branches then collect all the branches at the end
 
-        // Creates a list res with amountList.size() 0s.
-        // TODO: Figure out why it gives me a problem. Think of cases where things don't work out
-        List<Integer> res = Collections.nCopies(this.amountList.size(), 0);
-        if (sum(resList, this.amountList).compareTo(n) >= 0) {
-            return res;
-        }
-        else {
-            //Need to do this once for every amount value. Then we return addItem(res, n), which will keep calling
-            // addItem until it reaches the base case, returning all the combinations.
-            for (int i : this.amountList) {
-                int ind = this.amountList.get(i);
-                res.add(ind, 1);
-                return addItem(res, n);
-            }
-        }
-        return res;
+        // We want to add take our smallest cases and add one to what we think is correct then return it
+
+        List<List<Integer>> result = new ArrayList<>();
+        allCombinationsHelper(result, new ArrayList<>(), 0, this.totalCost);
+        return result;
+
+
+
+
     }
 
-    public static Integer sum(List<Integer> countList, List<Integer> amountList) {
+    public void allCombinationsHelper(List<List<Integer>> result, List<Integer> currentList, int start, int target) {
+        if (target <= 0) {
+            result.add(new ArrayList<>(currentList));
+            return;
+        }
+        else {
+            for (int i = start; i < this.amountList.size(); i++) {
+                currentList.add(this.amountList.get(i));
+                allCombinationsHelper(result, currentList, start, target - this.amountList.get(i));
+                currentList.remove(currentList.size() - 1);
+            }
+        }
+
+
+    }
+
+
+    public Integer sum(List<Integer> countList) {
         // countList and amountLIst should be the same size.
         // If countLIst is size 0, return 0.
 
         // TODO: Code not tested
-        int i = 0;
-        int res = 0;
-        while (i < countList.size()) {
-            res += countList.get(i) * amountList.get(i);
-            i++;
+        int j = 0;
+        int resl = 0;
+        while (j < countList.size()) {
+            resl += countList.get(j) * this.amountList.get(j);
+            j++;
         }
 
-        return res;
+        return resl;
 
     }
 
@@ -100,6 +115,10 @@ public class Optimizationator<T> {
         Optimizationator O = new Optimizationator(1500, Arrays.asList(500, 1500));
         System.out.println(O.getTotalCost());
         System.out.println(O.getAmountList());
+        System.out.println(O.allCombinations());
+
+
+
     }
 
 }
