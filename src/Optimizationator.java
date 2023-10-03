@@ -11,10 +11,12 @@ public class Optimizationator<T> {
 
     private List<Integer> amountList;
 
-    public Optimizationator(int totalCost, List<Integer> amountList) {
+    private List<Double> costList;
+    public Optimizationator(int totalCost, List<Integer> amountList, List<Double> costList) {
         // THIS WORKS
         this.totalCost = totalCost;
         this.amountList = amountList;
+        this.costList = costList;
     }
 
     public int getTotalCost() {
@@ -25,38 +27,28 @@ public class Optimizationator<T> {
         return amountList;
     }
 
-    //public List<OptNode<T>> createSearchSpace(int n) {
-        // This should generate an n-ary tree of all possible combinations to get to the required VP amount.
-        // It will return the data structure.
+    /*
+    Find the cheapest price in our list and return it.
 
-        // n gives us our total amount of VP.
+     */
 
-        // Let's generate a starter node, this one has 0 Vp and costs 0, just serves to connect the hole tree
-        //OptNode head = new OptNode(0, 0);
+    public List<Integer> getCheapestCombination(List<List<Integer>> combinations) {
+        List<Integer> res = new ArrayList<Integer>();
+        double globalCost = Double.POSITIVE_INFINITY;
+        for (List<Integer> listNum : combinations) {
+            int cost = 0;
+            for (Integer num : listNum) {
+                int ind = this.amountList.indexOf(num);
+                cost += this.costList.get(ind);
+            }
+            if (cost < globalCost) {
+                res = new ArrayList<>(listNum);
+                globalCost = cost;
+            }
 
-
-        // I want to be able to make a function to determine all combinations to a certain number from a finite list.
-
-
-
-
-
-
-   // }
-
-    //public List<List<Integer>> allCombinations(int n, List<Integer> intList) {
-        // Generate every way that the numbers in intList can combine to a number equal or greater to n. However,
-        // if the number is already greater than n, don't add additional values.
-
-        // Recursive structure, we want to track our current total and the inputs we used to get there.
-        // Then at each level, we want to check if we above our n total, if we are, return the input list and merge it
-        // to the main, if we are not, then add every item to our input list.
-
-        // To do this, we would first want to make a way to represent our list. Two ways, add items or array of length
-        // intList, with slots indicating how many we take. Since combination don't matter, I think this is what to do
-
-
-
+        }
+        return res;
+    }
 
     //}
     /*
@@ -112,11 +104,12 @@ public class Optimizationator<T> {
     }
 
     public static void main(String[] args) {
-        Optimizationator O = new Optimizationator(1500, Arrays.asList(500, 1500));
+        Optimizationator O = new Optimizationator(1500, Arrays.asList(500, 1500), Arrays.asList(5.00, 15.00));
         System.out.println(O.getTotalCost());
         System.out.println(O.getAmountList());
         System.out.println(O.allCombinations());
-
+        List<List<Integer>> allCombos = O.allCombinations();
+        System.out.println(O.getCheapestCombination(allCombos));
 
 
     }
