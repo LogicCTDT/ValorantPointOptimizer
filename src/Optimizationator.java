@@ -32,11 +32,12 @@ public class Optimizationator<T> {
 
      */
 
-    public List<Integer> getCheapestCombination(List<List<Integer>> combinations) {
-        List<Integer> res = new ArrayList<Integer>();
+    public List<Object> getCheapestCombination(List<List<Integer>> combinations) {
+        List<Object> res = new ArrayList<Object>();
         double globalCost = Double.POSITIVE_INFINITY;
+        double oldSum = 0;
         for (List<Integer> listNum : combinations) {
-            int cost = 0;
+            double cost = 0;
             for (Integer num : listNum) {
                 int ind = this.amountList.indexOf(num);
                 cost += this.costList.get(ind);
@@ -44,9 +45,21 @@ public class Optimizationator<T> {
             if (cost < globalCost) {
                 res = new ArrayList<>(listNum);
                 globalCost = cost;
+                oldSum = listNum.stream().mapToInt(Integer::intValue).sum();
+            }
+            else if (cost == globalCost) {
+                double newSum = listNum.stream().mapToInt(Integer::intValue).sum();
+                if (newSum > oldSum) {
+                    res = new ArrayList<>(listNum);
+                    globalCost = cost;
+                    oldSum = listNum.stream().mapToInt(Integer::intValue).sum();
+                }
+
             }
 
+
         }
+        res.add(globalCost);
         return res;
     }
 
@@ -72,6 +85,7 @@ public class Optimizationator<T> {
 
     public void allCombinationsHelper(List<List<Integer>> result, List<Integer> currentList, int start, int target) {
         if (target <= 0) {
+            System.out.println(currentList);
             result.add(new ArrayList<>(currentList));
             return;
         }
