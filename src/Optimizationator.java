@@ -85,7 +85,6 @@ public class Optimizationator<T> {
 
     public void allCombinationsHelper(List<List<Integer>> result, List<Integer> currentList, int start, int target) {
         if (target <= 0) {
-            System.out.println(currentList);
             result.add(new ArrayList<>(currentList));
             return;
         }
